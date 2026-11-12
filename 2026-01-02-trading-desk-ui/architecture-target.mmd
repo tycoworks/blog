@@ -1,0 +1,11 @@
+---
+config:
+  theme: default
+  look: handDrawn
+  layout: elk
+---
+flowchart LR
+    PG[Postgres<br>Instance] -->|Instruments| SD[Streaming<br>Database]
+    PG -->|Trades| SD
+    MDS[Market Data<br>Service] -->|Trade Prints| SD
+    SD -->|Positions| UI[UI]

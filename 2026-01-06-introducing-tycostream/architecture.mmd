@@ -1,0 +1,13 @@
+---
+config:
+  theme: default
+  look: handDrawn
+  layout: elk
+---
+flowchart LR
+    MZ[("Materialize")] -->|SUBSCRIBE| DB
+    subgraph TS["tycostream"]
+        DB["database"] --> CACHE["view cache"] --> API["GraphQL API"]
+    end
+    API -->|subscriptions| CLIENTS["Clients"]
+    API -->|triggers| HOOKS["Webhooks"]

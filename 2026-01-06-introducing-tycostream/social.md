@@ -1,6 +1,6 @@
 # Social Promo
 
-As posted on LinkedIn when the post was first published.
+As posted on LinkedIn when the post was first published, with `tycostream-overview.pdf` as the carousel.
 
 ## LinkedIn
 

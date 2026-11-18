@@ -5,9 +5,9 @@ config:
   layout: elk
 ---
 flowchart LR
-    MZ[("Materialize")] -->|SUBSCRIBE| DB
+    MZ[("Materialize")] -->|one SUBSCRIBE per client| DB
     subgraph TS["tycostream"]
-        DB["database"] --> CACHE["view cache"] --> API["GraphQL API"]
+        DB["database"] --> VIEW["view"] --> API["API"]
     end
-    API -->|subscriptions| CLIENTS["Clients"]
-    API -->|triggers| HOOKS["Webhooks"]
+    API -->|query| C1["Client"]
+    API -->|subscription| C2["Client"]

@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="74 -52 1392 864" width="1392" height="864" font-family="Inter, 'Helvetica Neue', Helvetica, Arial, sans-serif">
+  <rect x="-100" y="-100" width="1700" height="1100" fill="#FFFFFF"/>
+
+  <!-- Teams -->
+  <g fill="#EDE9FE" stroke="#7C3AED" stroke-width="2.5">
+    <circle cx="384" cy="364" r="134"/>
+    <circle cx="815" cy="200" r="145"/>
+    <circle cx="676" cy="570" r="134"/>
+  </g>
+  <g fill="#1A1A2E" font-size="23" font-weight="700" text-anchor="middle">
+    <text x="372" y="300">Trading</text>
+    <text x="812" y="132">Market Data</text>
+    <text x="652" y="660">Risk</text>
+  </g>
+
+  <!-- Data products feeding data products -->
+  <g stroke="#7C3AED" stroke-width="3.5" stroke-linecap="round">
+    <line x1="540" y1="398" x2="749" y2="574"/>
+    <line x1="922" y1="297" x2="822" y2="536"/>
+    <line x1="884" y1="252" x2="540" y2="345"/>
+  </g>
+
+  <!-- Consumers reading data products -->
+  <g stroke="#4A4A5A" stroke-width="2" stroke-linecap="round">
+    <line x1="452" y1="183" x2="476" y2="320"/>
+    <line x1="510" y1="183" x2="776" y2="536"/>
+    <line x1="532" y1="152" x2="884" y2="222"/>
+    <line x1="1105" y1="352" x2="988" y2="268"/>
+    <line x1="1085" y1="398" x2="853" y2="566"/>
+    <line x1="973" y1="616" x2="853" y2="604"/>
+  </g>
+
+  <!-- Data products -->
+  <g fill="#7C3AED">
+    <rect x="428" y="320" width="120" height="100" rx="14"/>
+    <rect x="876" y="197" width="120" height="100" rx="14"/>
+    <rect x="741" y="536" width="120" height="100" rx="14"/>
+  </g>
+  <g fill="#FFFFFF" font-size="21" text-anchor="middle">
+    <text x="488" y="377">Positions</text>
+    <text x="936" y="254">Prices</text>
+    <text x="801" y="593">Limits</text>
+  </g>
+
+  <!-- Consumers -->
+  <g fill="#FFFFFF" stroke="#1A1A2E" stroke-width="2.5">
+    <rect x="372" y="120" width="160" height="63" rx="10"/>
+    <rect x="1085" y="352" width="150" height="63" rx="10"/>
+    <rect x="973" y="585" width="166" height="63" rx="10"/>
+  </g>
+  <g fill="#1A1A2E" font-size="21" text-anchor="middle">
+    <text x="452" y="159">Trading UI</text>
+    <text x="1160" y="391">AI agent</text>
+    <text x="1056" y="624">Dashboard</text>
+  </g>
+
+  <!-- Key -->
+  <g>
+    <circle cx="1113" cy="80" r="27" fill="#EDE9FE" stroke="#7C3AED" stroke-width="2.5"/>
+    <rect x="1086" y="125" width="54" height="54" rx="10" fill="#7C3AED"/>
+    <rect x="1086" y="198" width="54" height="54" rx="10" fill="#FFFFFF" stroke="#1A1A2E" stroke-width="2.5"/>
+  </g>
+  <g fill="#1A1A2E" font-size="21">
+    <text x="1163" y="87">Team</text>
+    <text x="1163" y="159">Data product</text>
+    <text x="1163" y="232">Consumer</text>
+  </g>
+</svg>

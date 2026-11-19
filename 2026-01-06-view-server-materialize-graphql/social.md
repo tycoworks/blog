@@ -16,11 +16,12 @@ Check it out here: https://lnkd.in/eETngdes
 
 ## LinkedIn Repost
 
-Earlier this year I started building tycostream, which turns Materialize views into real-time GraphQL APIs.
+Earlier this year, I started building a tool to turn Materialize views into real-time GraphQL APIs. I hadn't worked on it in a few months, but I just finished a new version that changes how it streams data.
 
-I hadn't worked on it in a few months, but I recently reworked it to add queries alongside subscriptions, as well as support for Hasura-style joins, sorting, and paging. I also removed triggers and swapped WebSockets for server-sent events, and rewrote the original post with the new design and architecture.
+It now handles nested joins and Hasura-style sorting and paging, so you can subscribe to related views in one request. It also now sends Materialize's updates in complete batches, making it easier to build applications that need consistent data.
 
-Are you building real-time applications over streaming databases? Would something like this be useful for you? Feedback is very welcome!
+Are you building real-time applications over streaming databases? If so, how are you interacting with them, and would something like this be useful? Let me know in the comments.
 
-Blog post: https://tycoworks.substack.com/p/tycostream-turn-materialize-views  
-GitHub: https://github.com/tycoworks/tycostream
+Try it out here: https://github.com/tycoworks/tycostream
+
+P.S. I also reworked the architecture a little, and updated the original post with the new design: https://tycoworks.substack.com/p/tycostream-turn-materialize-views

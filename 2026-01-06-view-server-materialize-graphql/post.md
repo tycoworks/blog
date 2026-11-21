@@ -80,8 +80,8 @@ type positions {
 
 type positions_update {
   operation: row_operation!
+  key: Int!
   data: positions
-  fields: [String!]!
   trades(where: trades_bool_exp, order_by: [trades_order_by!], limit: Int, offset: Int): [trades_update!]!
 }
 
@@ -96,8 +96,8 @@ type trades {
 
 type trades_update {
   operation: row_operation!
+  key: Int!
   data: trades
-  fields: [String!]!
 }
 
 enum row_operation {
@@ -115,11 +115,11 @@ Clients can then query or subscribe to each view, using Hasura-style [filtering]
 subscription {
   positions(where: {symbol: {_eq: "AAPL"}}) {
     operation
-    fields
+    key
     data { instrument_id symbol net_position latest_price market_value }
     trades(order_by: [{executed_at: desc}], limit: 2) {
       operation
-      fields
+      key
       data { id quantity price }
     }
   }
@@ -187,11 +187,11 @@ tycostream streams updates to clients in the shape originally requested. For exa
     "positions": [
       {
         "operation": "INSERT",
-        "fields": ["instrument_id", "symbol", "net_position", "latest_price", "market_value"],
+        "key": 1,
         "data": {"instrument_id": 1, "symbol": "AAPL", "net_position": 660, "latest_price": 201.01, "market_value": 132666.6},
         "trades": [
-          {"operation": "INSERT", "fields": ["id", "quantity", "price"], "data": {"id": 16, "quantity": 10, "price": 200.9}},
-          {"operation": "INSERT", "fields": ["id", "quantity", "price"], "data": {"id": 15, "quantity": -40, "price": 200.32}}
+          {"operation": "INSERT", "key": 16, "data": {"id": 16, "quantity": 10, "price": 200.9}},
+          {"operation": "INSERT", "key": 15, "data": {"id": 15, "quantity": -40, "price": 200.32}}
         ]
       }
     ]
@@ -207,8 +207,8 @@ After that, it would receive updates for the rows that changed, such as this pri
     "positions": [
       {
         "operation": "UPDATE",
-        "fields": ["instrument_id", "latest_price", "market_value"],
-        "data": {"instrument_id": 1, "symbol": null, "net_position": null, "latest_price": 201.31, "market_value": 132864.6},
+        "key": 1,
+        "data": {"instrument_id": 1, "symbol": "AAPL", "net_position": 660, "latest_price": 201.31, "market_value": 132864.6},
         "trades": []
       }
     ]
@@ -244,6 +244,6 @@ Imagine being able to vibe code a positions dashboard in something like [Retool]
 
 So, can you build a view server with Materialize and GraphQL? I believe so, or at least the essence of one. Materialize handles the querying, joining, and consistency, while GraphQL adds a typed API that frontends can query and subscribe to on demand. And because GraphQL and the Postgres wire protocol are open standards with mature libraries, tycostream took less than 4,000 lines of TypeScript to build.
 
-GraphQL has its downsides, though. Its messages are verbose JSON, so I doubt it would suit ultra-low latency use cases. Every update also has to carry the full set of fields, so I had to invent a [convention for incremental updates](https://github.com/tycoworks/tycostream/blob/main/docs/api.md#updates), making each message bigger than it should be. Finally, it doesn't support changing an open subscription, which would make [viewporting](https://vuu.finos.org/docs/providers_tables_viewports/viewports/) difficult.
+GraphQL has its downsides, though. Its messages are verbose JSON, so I doubt it would suit ultra-low latency use cases. Every update also has to carry the full set of fields, not just the ones that changed, making each message bigger than it could be. Finally, it doesn't support changing an open subscription, which would make [viewporting](https://vuu.finos.org/docs/providers_tables_viewports/viewports/) difficult.
 
 If you're building real-time applications with SQL and GraphQL, I'd love to hear from you. What problems are you solving? What would make this useful for your use case? Drop me a line here or at <chris@tycoworks.com>.
